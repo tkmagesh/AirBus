@@ -11,8 +11,8 @@ namespace DelegatesDemo
         static void Main(string[] args)
         {
             var order = new Order(1000);
-            
-            //order.OnMaxOrderValueReached += NotifyMaxOrderValueReached;
+                
+            order.OnMaxOrderValueReached += NotifyMaxOrderValueReached;
 
             order.AddLineItem(new LineItem(){Id =1,Name = "P1", UnitCost = 100, Units = 5});
             Console.WriteLine(order.OrderValue);
@@ -31,8 +31,8 @@ namespace DelegatesDemo
     class Order
     {
         private readonly decimal _maxOrderValue;
-        
-        public MaxOrderValueReachedDelegate OnMaxOrderValueReached { get; set; }
+
+        public event MaxOrderValueReachedDelegate OnMaxOrderValueReached;
 
         public Order(decimal maxOrderValue)
         {
